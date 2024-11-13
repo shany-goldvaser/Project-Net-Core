@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShanyGoldvaserProject.Entities;
-using ShanyGoldvaserProject.Service;
+using Project_Erov.Entities;
+using Project_Erov.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ShanyGoldvaserProject.Controllers
+namespace Project_Erov.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ErovController : ControllerBase
     {
-        readonly Services.ErovService _erovService = new();
+        readonly ErovService _erovService = new();
         // GET: api/<UserController>
         [HttpGet]
         public ActionResult<List<Erov>> Get()
@@ -24,7 +24,7 @@ namespace ShanyGoldvaserProject.Controllers
         {
             if (id < 0)
             {
-               return NotFound();
+                return NotFound();
             }
             var res = _erovService.GetErovId(id);
             if (res == null)

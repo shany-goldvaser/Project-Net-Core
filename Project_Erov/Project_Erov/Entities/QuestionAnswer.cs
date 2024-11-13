@@ -1,4 +1,4 @@
-﻿namespace ShanyGoldvaserProject.Entities
+﻿namespace Project_Erov.Entities
 {
     public class QuestionAnswer
     {

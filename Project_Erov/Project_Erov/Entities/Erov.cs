@@ -1,8 +1,8 @@
-﻿namespace ShanyGoldvaserProject.Entities
+﻿namespace Project_Erov.Entities
 {
     public enum LevelErov
     {
-      City, Neighborhood, GoodNeighborhood
+        City, Neighborhood, GoodNeighborhood
     }
     public class Erov
     {

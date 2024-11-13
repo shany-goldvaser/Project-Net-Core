@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShanyGoldvaserProject.Entities;
-using ShanyGoldvaserProject.Services;
+using Project_Erov.Entities;
+using Project_Erov.Services;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ShanyGoldvaserProject.Controllers
+namespace Project_Erov.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -15,16 +16,16 @@ namespace ShanyGoldvaserProject.Controllers
         [HttpGet]
         public ActionResult<List<QuestionAnswer>> Get()
         {
-           return _questionAnswerService.GetQuestionAnswer();
+            return _questionAnswerService.GetQuestionAnswer();
         }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public ActionResult<QuestionAnswer> Get(int id)
         {
-            if(id<0)
+            if (id < 0)
             {
-                return NotFound(); 
+                return NotFound();
             }
             var res = _questionAnswerService.GetQuestionAnswerId(id);
             if (res == null)
@@ -44,9 +45,9 @@ namespace ShanyGoldvaserProject.Controllers
             if (res)
             {
                 return res;
-            }            
+            }
             return NotFound(res);
-          
+
         }
 
         // PUT api/<UserController>/5
@@ -75,7 +76,7 @@ namespace ShanyGoldvaserProject.Controllers
                 return res;
             }
             return NotFound(res);
-            
+
         }
     }
 }

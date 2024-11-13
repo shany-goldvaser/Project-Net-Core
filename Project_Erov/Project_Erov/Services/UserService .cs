@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using ShanyGoldvaserProject.Entities;
+using Project_Erov.Dto;
+using Project_Erov.Entities;
 using System;
 
-namespace ShanyGoldvaserProject.Services
+namespace Project_Erov.Services
 {
     public class UserService
     {

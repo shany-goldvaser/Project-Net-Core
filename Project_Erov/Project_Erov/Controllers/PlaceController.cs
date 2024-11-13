@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShanyGoldvaserProject.Entities;
-using ShanyGoldvaserProject.Services;
+using Project_Erov.Entities;
+using Project_Erov.Services;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ShanyGoldvaserProject.Controllers
+namespace Project_Erov.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PlaceController : ControllerBase
     {
-        readonly PlaceService _placeService = new ();
+        readonly PlaceService _placeService = new();
         // GET: api/<UserController>
         [HttpGet]
         public ActionResult<List<Place>> Get()
@@ -21,7 +22,7 @@ namespace ShanyGoldvaserProject.Controllers
         [HttpGet("{id}")]
         public ActionResult<Place> Get(int id)
         {
-            if(id<0)
+            if (id < 0)
             {
                 return NotFound();
             }
@@ -61,7 +62,7 @@ namespace ShanyGoldvaserProject.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            if(id < 0)
+            if (id < 0)
             {
                 return false;
             }

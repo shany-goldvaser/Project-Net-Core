@@ -1,16 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShanyGoldvaserProject.Entities;
-using ShanyGoldvaserProject.Service;
+using Project_Erov.Entities;
+using Project_Erov.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ShanyGoldvaserProject.Controllers
+namespace Project_Erov.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ContributionsController : ControllerBase
     {
-        readonly ContributionsService _contributionsService = new();
+        readonly ContributionsService _contributionsService;
+
+        public ContributionsController(ContributionsService contributionsService)
+        {
+            _contributionsService = contributionsService;
+        }
+
         // GET: api/<UserController>
         [HttpGet]
         public ActionResult<List<Contributions>> Get()

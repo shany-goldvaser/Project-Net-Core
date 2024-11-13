@@ -1,5 +1,5 @@
-﻿namespace ShanyGoldvaserProject.Entities
-{   
+﻿namespace Project_Erov.Entities
+{
     public class User
     {
         public int Id { get; set; }

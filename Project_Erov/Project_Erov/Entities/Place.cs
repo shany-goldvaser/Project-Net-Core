@@ -1,8 +1,8 @@
-﻿namespace ShanyGoldvaserProject.Entities
+﻿namespace Project_Erov.Entities
 {
     public enum Type
     {
-        City, Neighborhood,Complex
+        City, Neighborhood, Complex
     }
     public enum Area
     {
@@ -10,7 +10,7 @@
     }
     public enum NameCity
     {
-        BneyBrak,Jersulem,Elad,Tzat
+        BneyBrak, Jersulem, Elad, Tzat
     }
     public class Place
     {

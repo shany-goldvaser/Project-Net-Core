@@ -1,4 +1,4 @@
-﻿namespace ShanyGoldvaserProject.Entities
+﻿namespace Project_Erov.Dto
 {
     public class DataContextManager
     {

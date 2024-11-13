@@ -1,6 +1,7 @@
-﻿using ShanyGoldvaserProject.Entities;
+﻿using Project_Erov.Dto;
+using Project_Erov.Entities;
 
-namespace ShanyGoldvaserProject.Services
+namespace Project_Erov.Services
 {
     public class ErovService
     {

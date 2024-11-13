@@ -1,55 +1,64 @@
-﻿using ShanyGoldvaserProject.Entities;
-namespace ShanyGoldvaserProject.Service
+﻿using Project_Erov.Dto;
+using Project_Erov.Entities;
+namespace Project_Erov.Services
 {
     public class ContributionsService
     {
-        public List<Contributions> GetContributions() 
-        { 
-            if(DataContextManager.DataContext.ContributionsList==null)
-            {
-                DataContextManager.DataContext.ContributionsList = new List<Contributions>();
-            }
-            return DataContextManager.DataContext.ContributionsList;
-        } 
-        public Contributions GetContributionsId(int id)
+        readonly IDataContextContribution _dataContextContribution;
+
+        public ContributionsService(IDataContextContribution dataContextContribution)
         {
-            if (DataContextManager.DataContext.ContributionsList == null)
+            _dataContextContribution = dataContextContribution;
+        }
+
+        public List<Contributions> GetContributions()
+        {
+            var data = _dataContextContribution.LoadData();
+            if (data == null)
             {
                 return null;
             }
-            return DataContextManager.DataContext.ContributionsList.Find(e => e.Id == id);
+            return data.ToList();
+        }
+        public Contributions GetContributionsId(int id)
+        {
+            var data = _dataContextContribution.LoadData();
+            if (data == null)
+                return null;
+            return data.Where(c => c.Id == id).FirstOrDefault();
 
         }
         public bool AddContributions(Contributions e)
         {
-            if (DataContextManager.DataContext.ContributionsList == null)
-                DataContextManager.DataContext.ContributionsList = new List<Contributions>();
-            DataContextManager.DataContext.ContributionsList.Add(e);
-            return true;
+            var data = _dataContextContribution.LoadData();
+            if (data == null)
+                return false;
+            data.Add(e);
+            return _dataContextContribution.SaveData(data);
         }
         public bool UpdateContributions(int id, Contributions e)
         {
-            if (DataContextManager.DataContext.ContributionsList == null)
+            var data = _dataContextContribution.LoadData();
+            if (data == null)
                 return false;
-            var index = DataContextManager.DataContext.ContributionsList.FindIndex(ev => ev.Id == id);
+            var index = data.FindIndex(ev => ev.Id == id);
             if (index != -1)
             {
-                DataContextManager.DataContext.ContributionsList[index] = e;
-                return true;
+                data[index] = e;
             }
-            return false;
+            return _dataContextContribution.SaveData(data);
         }
         public bool DeleteContributions(int id)
         {
-            if (DataContextManager.DataContext.ContributionsList == null)
+            var data = _dataContextContribution.LoadData();
+            if (data == null)
                 return false;
-            var item = DataContextManager.DataContext.ContributionsList.Find(ev => ev.Id == id);
+            var item = data.Find(ev => ev.Id == id);
             if (item != null)
             {
-                DataContextManager.DataContext.ContributionsList.Remove(item);
-                return true;
+                data.Remove(item);
             }
-            return false;
+            return _dataContextContribution.SaveData(data);
         }
     }
 }

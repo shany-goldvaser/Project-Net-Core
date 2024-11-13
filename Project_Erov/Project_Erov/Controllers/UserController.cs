@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShanyGoldvaserProject.Entities;
-using ShanyGoldvaserProject.Services;
+using Project_Erov.Entities;
+using Project_Erov.Services;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-namespace ShanyGoldvaserProject.Controllers
+namespace Project_Erov.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,9 +22,9 @@ namespace ShanyGoldvaserProject.Controllers
         public ActionResult<User> Get(int id)
         {
             var res = _userService.GetUsersId(id);
-            if (res==null)
+            if (res == null)
             {
-               return NotFound(res); 
+                return NotFound(res);
             }
             return res;
 

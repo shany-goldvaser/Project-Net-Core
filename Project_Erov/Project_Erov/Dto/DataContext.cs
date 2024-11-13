@@ -1,4 +1,6 @@
-﻿namespace ShanyGoldvaserProject.Entities
+﻿using Project_Erov.Entities;
+
+namespace Project_Erov.Dto
 {
     public class DataContext
     {
