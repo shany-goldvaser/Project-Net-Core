@@ -11,10 +11,10 @@ namespace Project_Erov.Dto
             {
                 string path = Path.Combine(AppContext.BaseDirectory, "Data", "data.json");
                 string jsonString = File.ReadAllText(path);
-                var AllCoins = JsonSerializer.Deserialize<List<Contributions>>(jsonString);// typeof(DataCoins)); ;
-                if (AllCoins == null) 
+                var AllContributions = JsonSerializer.Deserialize<List<Contributions>>(jsonString);// typeof(DataCoins)); ;
+                if (AllContributions == null) 
                    { return null; }
-                return AllCoins;
+                return AllContributions;
             }
             catch
             {
