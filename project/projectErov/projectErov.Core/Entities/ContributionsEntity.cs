@@ -18,7 +18,8 @@ namespace projectErov.Core.Entities
 		[Column(TypeName = "decimal(18,4)")]
 		public decimal Sum { get; set; }
         public DateTime Date { get; set; }
-        public string? Donor { get; set; }
+        [ForeignKey("User")]
+        public int DonorId { get; set; }
         public string? NameForPraying { get; set; }
         public int NumInvoice { get; set; }
     }

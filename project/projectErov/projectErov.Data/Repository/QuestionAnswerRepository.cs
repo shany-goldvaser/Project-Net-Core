@@ -34,7 +34,7 @@ namespace projectErov.Data.Repository
         {
             try
             {
-                QuestionAnswerEntity q = _dataContext.QuestionAnswerList.Find(id);
+                QuestionAnswerEntity q = _dataContext.QuestionAnswerList.FirstOrDefault(t => t.Id == id);
                 if (q == null)
                     return false;
                 _dataContext.QuestionAnswerList.Remove(q);
@@ -60,13 +60,14 @@ namespace projectErov.Data.Repository
         {
             try
             {
-                QuestionAnswerEntity q = _dataContext.QuestionAnswerList.Find(id);
+                QuestionAnswerEntity q = _dataContext.QuestionAnswerList.FirstOrDefault(t => t.Id == id);
                 if (q == null)
                     return false;
                 q.Answer = t.Answer.IsNullOrEmpty() ? q.Answer : t.Answer;
                 q.Question = t.Question.IsNullOrEmpty() ? q.Question : t.Question;
                 q.NameAsker = t.NameAsker.IsNullOrEmpty() ? q.NameAsker : t.NameAsker;
-                q.IdRav = t.IdRav == 0 ? q.IdRav : t.IdRav;
+                q.RavId = t.RavId == 0 ? q.RavId : t.RavId;
+                q.AskerId = t.AskerId == 0 ? q.AskerId : t.AskerId;
                 q.DateUpdate = t.DateUpdate == null ? q.DateUpdate : t.DateUpdate;
 
 				_dataContext.SaveChanges();

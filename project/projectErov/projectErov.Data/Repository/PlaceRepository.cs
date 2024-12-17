@@ -35,7 +35,7 @@ namespace projectErov.Data.Repository
         {
             try
             {
-                PlaceEntity p = _dataContext.PlaceList.Find(id);
+                PlaceEntity p = _dataContext.PlaceList.FirstOrDefault(t => t.Id == id);
                 if (p == null)
                     return false;
                 _dataContext.PlaceList.Remove(p);
@@ -62,10 +62,13 @@ namespace projectErov.Data.Repository
         {
             try
             {
-				PlaceEntity p = _dataContext.PlaceList.Find(id);
-				if (p == null)
+				PlaceEntity p = _dataContext.PlaceList.FirstOrDefault(t => t.Id == id);
+                if (p == null)
 					return false;
-				_dataContext.SaveChanges();
+                p.Area = t.Area == 0 ? p.Area : t.Area;
+                p.Name = t.Name == 0 ? p.Name : t.Name;
+                p.Type = t.Type == 0 ? p.Type : t.Type;
+                _dataContext.SaveChanges();
                 return true;
             }
             catch (Exception)

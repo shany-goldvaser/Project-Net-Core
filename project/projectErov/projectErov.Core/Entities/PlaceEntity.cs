@@ -27,8 +27,8 @@ namespace projectErov.Core.Entities
         [Key]
         public int IdInTable { get; set; }
         public int Id { get; set; }
-        //public NameCity Name { get; set; }
-        //public Type Type { get; set; }
-        //public Area Area { get; set; }
+        public int Name { get; set; }
+        public int Type { get; set; }
+        public int Area { get; set; }
     }
 }

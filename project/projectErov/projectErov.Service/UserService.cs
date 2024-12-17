@@ -31,9 +31,9 @@ namespace projectErov.Service
             int j = email.LastIndexOf('.');
             return i != -1 && j != -1 && i < j;
         }
-        public bool AddUser(UserEntity user)//what to do with the string??
+        public bool AddUser(UserEntity user)
         {
-            if (GetUserById(user.IdInTable)!=null && IsValidEmail(user.Email) && IsValidIsraelId(user.Tz))
+            if (GetUserById(user.IdInTable)==null && IsValidEmail(user.Email) && IsValidIsraelId(user.Tz))
                 return _repUser.ToAdd(user);
             return false;
 
@@ -59,8 +59,9 @@ namespace projectErov.Service
 
         public bool UpdateUser(int id, UserEntity user)
         {
-            if (GetUserById(id)!=null && IsValidEmail(user.Email) && IsValidIsraelId(user.Tz))
-                return _repUser.ToUpdate(id, user);                
+            if (GetUserById(id)!=null)
+            {  if(user.Email!=null && IsValidEmail(user.Email))
+                return _repUser.ToUpdate(id, user); }               
             return AddUser(user);
         }
     }

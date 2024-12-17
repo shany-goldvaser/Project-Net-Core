@@ -33,7 +33,7 @@ namespace projectErov.Data.Repository
         {
             try
             {
-                ContributionsEntity t = _dataContext.ContributionsList.Find(id);
+                ContributionsEntity t = _dataContext.ContributionsList.FirstOrDefault(t => t.NumInvoice == id);
                 if (t == null)
                     return false;
                 _dataContext.ContributionsList.Remove(t);
@@ -60,10 +60,9 @@ namespace projectErov.Data.Repository
         {
             try
             {
-                ContributionsEntity c = _dataContext.ContributionsList.Find(id);
+                ContributionsEntity c = _dataContext.ContributionsList.FirstOrDefault(t => t.NumInvoice == id);
                 if (c == null)
                     return false;
-                c.Donor = t.Donor.IsNullOrEmpty() ? c.Donor : t.Donor;
                 c.NameForPraying = t.NameForPraying.IsNullOrEmpty() ? c.NameForPraying : t.NameForPraying;
                 c.Sum = t.Sum==0 ? c.Sum : t.Sum;
                 c.Date = t.Date == null ? c.Date : t.Date;//what to do with date

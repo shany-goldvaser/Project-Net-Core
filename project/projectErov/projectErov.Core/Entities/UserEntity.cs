@@ -14,9 +14,14 @@ namespace projectErov.Core.Entities
     {
 		[Key]
 		public int IdInTable { get; set; }
-		public string? FullName { get; set; }
-		public string? Tz { get; set; }
-		public string? PhoneNumber { get; set; }
+		public int Id { get; set; }
+        [Required]
+        public string FullName { get; set; }
+        [Required,MaxLength(9)]
+        public string Tz { get; set; }
+		[MaxLength(10)]
+		public string PhoneNumber { get; set; }
+		[EmailAddress]
 		public string? Email { get; set; }
 		public string? Adress { get; set; }
 		public bool Permission { get; set; }

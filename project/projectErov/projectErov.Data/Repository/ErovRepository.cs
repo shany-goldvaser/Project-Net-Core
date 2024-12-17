@@ -34,8 +34,8 @@ namespace projectErov.Data.Repository
         {
 			try
 			{
-				ErovEntity t = _dataContext.ErovList.Find(id);
-				if (t == null)
+				ErovEntity t = _dataContext.ErovList.FirstOrDefault(t => t.Id == id);
+                if (t == null)
 					return false;
 				_dataContext.ErovList.Remove(t);
 				_dataContext.SaveChanges();
@@ -61,13 +61,15 @@ namespace projectErov.Data.Repository
         {
 			try
 			{
-				ErovEntity t = _dataContext.ErovList.Find(id);
-				if (t== null)
+				ErovEntity t = _dataContext.ErovList.FirstOrDefault(t => t.Id == id);
+                if (t== null)
 					return false;
-				t.Status = c.Status!=t.Status? c.Status : t.Status;//what to do with bool
-				t.YardErov = c.YardErov != t.YardErov ? c.YardErov : t.YardErov;
+				t.Status = c.Status.HasValue? c.Status : t.Status;
+				t.YardErov = c.YardErov.HasValue? c.YardErov : t.YardErov;
+				t.Level = c.Level.HasValue? c.Level : t.Level;
 				t.BorderErov = c.BorderErov.IsNullOrEmpty() ? t.BorderErov : c.BorderErov;
 				t.IdRav = c.IdRav==0 ? t.IdRav : c.IdRav;
+				t.IdPlace = c.IdPlace == 0 ? t.IdPlace : c.IdPlace;
 				t.Message = c.Message.IsNullOrEmpty() ? t.Message : c.Message;
 
 				return true;

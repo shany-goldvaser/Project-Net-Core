@@ -33,7 +33,7 @@ namespace projectErov.Data.Repository
         {
             try
             {
-                UserEntity u = _dataContext.UsersList.Find(id);
+                UserEntity u = _dataContext.UsersList.FirstOrDefault(e=>e.Id==id);
                 if (u == null)
                     return false;
                 _dataContext.UsersList.Remove(u);
@@ -53,14 +53,13 @@ namespace projectErov.Data.Repository
 
         public UserEntity ToGetById(int id)
         {
-            string s = id.ToString();
-            return _dataContext.UsersList.FirstOrDefault(t=>t.Tz==s);
+            return _dataContext.UsersList.FirstOrDefault(t=>t.Id==id);
         }
         public bool ToUpdate(int id, UserEntity t)
         {
             try
             {
-                UserEntity u = _dataContext.UsersList.Find(t);
+                UserEntity u = _dataContext.UsersList.FirstOrDefault(e => e.Id == id);
                 if (u == null)
                     return false;
                 u.FullName = t.FullName.IsNullOrEmpty() ? u.FullName : t.FullName;

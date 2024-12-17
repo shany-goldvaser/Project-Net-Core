@@ -17,15 +17,15 @@ namespace projectErov.Core.Entities
     {
         public int IdInTable { get; set; }
         public int Id { get; set; }
-        //public LevelErov Level { get; set; }
-        public string? BorderErov { get; set; }
-        public bool YardErov { get; set; }
-        public bool Status { get; set; }
+        public int? Level { get; set; }
+        public string BorderErov { get; set; }
+        public bool? YardErov { get; set; }
+        public bool? Status { get; set; }
+        [ForeignKey("User")]
         public int IdRav { get; set; }
         public string? Message { get; set; }
-        //public PlaceEntity City { get; set; }
-        //public List<PlaceEntity>? Place { get; set; }
-        public int IdCity { get; set; }
-        public int IdTypePlace { get; set; }
+        [ForeignKey("Place")]
+        public int IdPlace { get; set; }
+
     }
 }
