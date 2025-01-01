@@ -16,9 +16,11 @@ namespace projectErov.Core.Entities
 		public string? Answer { get; set; }
 		public DateTime DateUpdate { get; set; }
 		public string? NameAsker { get; set; }
-        [ForeignKey("User")]
-        public int AskerId { get; set; }
-		[ForeignKey("User")]
-        public int RavId{ get; set; }
+        [ForeignKey("AskerId")]
+        public UserEntity? Asker { get; set; }
+        public int? AskerId { get; set; }
+        [ForeignKey("RavId")]
+        public UserEntity? Rav { get; set; }
+        public int? RavId{ get; set; }
 	}
 }

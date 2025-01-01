@@ -68,8 +68,8 @@ namespace projectErov.Data.Repository
 				t.YardErov = c.YardErov.HasValue? c.YardErov : t.YardErov;
 				t.Level = c.Level.HasValue? c.Level : t.Level;
 				t.BorderErov = c.BorderErov.IsNullOrEmpty() ? t.BorderErov : c.BorderErov;
-				t.IdRav = c.IdRav==0 ? t.IdRav : c.IdRav;
-				t.IdPlace = c.IdPlace == 0 ? t.IdPlace : c.IdPlace;
+				t.RavId = c.RavId == 0 ? t.RavId : c.RavId;
+				t.PlaceId = c.PlaceId == 0 ? t.PlaceId : c.PlaceId;
 				t.Message = c.Message.IsNullOrEmpty() ? t.Message : c.Message;
 
 				return true;

@@ -21,11 +21,13 @@ namespace projectErov.Core.Entities
         public string BorderErov { get; set; }
         public bool? YardErov { get; set; }
         public bool? Status { get; set; }
-        [ForeignKey("User")]
-        public int IdRav { get; set; }
+        [ForeignKey(nameof(RavId))]
+        public UserEntity? Rav { get; set; }
+        public int? RavId { get; set; }
         public string? Message { get; set; }
-        [ForeignKey("Place")]
-        public int IdPlace { get; set; }
+        [ForeignKey("PlaceId")]
+        public PlaceEntity? PlaceErov { get; set; }
+        public int? PlaceId { get; set; }
 
     }
 }

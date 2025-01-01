@@ -9,16 +9,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<IContributeService, ContributionService>();
-builder.Services.AddScoped<IRepository<ContributionsEntity>, ContributionsRepository>();
-builder.Services.AddScoped<IQuestionAnswerService, QuestionAnswerService>();
-builder.Services.AddScoped<IRepository<QuestionAnswerEntity>, QuestionAnswerRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IRepository<UserEntity>, UserRepository>();
-builder.Services.AddScoped<IErovService, ErovService>();
-builder.Services.AddScoped<IRepository<ErovEntity>, ErovRepository>();
-builder.Services.AddScoped<IPlaceService, PlaceService>();
-builder.Services.AddScoped<IRepository<PlaceEntity>, PlaceRepository>();
+
 builder.Services.AddDbContext<DataContext>(option =>
 {
 	option.UseSqlServer("Data Source = DESKTOP-Shany; Initial Catalog = ErovProject; Integrated Security = true; ");

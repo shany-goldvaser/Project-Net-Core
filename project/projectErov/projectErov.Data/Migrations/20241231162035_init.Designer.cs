@@ -12,8 +12,8 @@ using projectErov.Data;
 namespace projectErov.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241215221104_forgein-key")]
-    partial class forgeinkey
+    [Migration("20241231162035_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,7 @@ namespace projectErov.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DonorId")
+                    b.Property<int?>("DonorId")
                         .HasColumnType("int");
 
                     b.Property<string>("NameForPraying")
@@ -48,6 +48,8 @@ namespace projectErov.Data.Migrations
                         .HasColumnType("decimal(18,4)");
 
                     b.HasKey("IdInTable");
+
+                    b.HasIndex("DonorId");
 
                     b.ToTable("Contribute");
                 });
@@ -67,17 +69,17 @@ namespace projectErov.Data.Migrations
                     b.Property<int>("IdInTable")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdPlace")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdRav")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PlaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RavId")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
@@ -86,6 +88,10 @@ namespace projectErov.Data.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PlaceId");
+
+                    b.HasIndex("RavId");
 
                     b.ToTable("Erov");
                 });
@@ -126,7 +132,7 @@ namespace projectErov.Data.Migrations
                     b.Property<string>("Answer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AskerId")
+                    b.Property<int?>("AskerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateUpdate")
@@ -142,7 +148,7 @@ namespace projectErov.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RavId")
+                    b.Property<int?>("RavId")
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
@@ -150,6 +156,10 @@ namespace projectErov.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdInTable");
+
+                    b.HasIndex("AskerId");
+
+                    b.HasIndex("RavId");
 
                     b.ToTable("QuestionAnswer");
                 });
@@ -166,7 +176,6 @@ namespace projectErov.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
@@ -192,6 +201,45 @@ namespace projectErov.Data.Migrations
                     b.HasKey("IdInTable");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("projectErov.Core.Entities.ContributionsEntity", b =>
+                {
+                    b.HasOne("projectErov.Core.Entities.UserEntity", "Donor")
+                        .WithMany()
+                        .HasForeignKey("DonorId");
+
+                    b.Navigation("Donor");
+                });
+
+            modelBuilder.Entity("projectErov.Core.Entities.ErovEntity", b =>
+                {
+                    b.HasOne("projectErov.Core.Entities.PlaceEntity", "PlaceErov")
+                        .WithMany()
+                        .HasForeignKey("PlaceId");
+
+                    b.HasOne("projectErov.Core.Entities.UserEntity", "Rav")
+                        .WithMany()
+                        .HasForeignKey("RavId");
+
+                    b.Navigation("PlaceErov");
+
+                    b.Navigation("Rav");
+                });
+
+            modelBuilder.Entity("projectErov.Core.Entities.QuestionAnswerEntity", b =>
+                {
+                    b.HasOne("projectErov.Core.Entities.UserEntity", "Asker")
+                        .WithMany()
+                        .HasForeignKey("AskerId");
+
+                    b.HasOne("projectErov.Core.Entities.UserEntity", "Rav")
+                        .WithMany()
+                        .HasForeignKey("RavId");
+
+                    b.Navigation("Asker");
+
+                    b.Navigation("Rav");
                 });
 #pragma warning restore 612, 618
         }
